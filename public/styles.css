@@ -1,0 +1,354 @@
+/* 
+ ________  _________    ___    ___ ___       _______   ________      
+|\   ____\|\___   ___\ |\  \  /  /|\  \     |\  ___ \ |\   ____\     
+\ \  \___|\|___ \  \_| \ \  \/  / | \  \    \ \   __/|\ \  \___|_    
+ \ \_____  \   \ \  \   \ \    / / \ \  \    \ \  \_|/_\ \_____  \   
+  \|____|\  \   \ \  \   \/  /  /   \ \  \____\ \  \_|\ \|____|\  \  
+    ____\_\  \   \ \__\__/  / /      \ \_______\ \_______\____\_\  \ 
+   |\_________\   \|__|\___/ /        \|_______|\|_______|\_________\
+   \|_________|       \|___|/                            \|_________|
+*/
+
+
+/* Global Styles */
+
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+html, body { 
+  font: 14px 'Barlow', Helvetica, Arial; 
+  background: #000;
+  -ms-overflow-style: none;
+  scrollbar-width: none !important;
+  height: 100%;
+  width: 100%;
+}
+
+::-webkit-scrollbar, ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track { 
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+  visibility: hidden !important;
+  background-color: transparent;
+  -webkit-appearance: none;
+  z-index: 0;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: auto;
+  height: 100vh;
+  width: 100vw;
+  background-image: url('/assets/background.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.5;
+  visibility: hidden;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/**
+ * Header is only visible on small width mobile phones.
+ * logo will be centered in it and header will be a top bar
+ */
+
+.header {
+  position: fixed;
+  top: 0;
+  border-bottom: 1px solid #353535;
+  background-color: #000;
+  height: 56px;
+  width: 100%;
+  visibility: hidden; /* visible for small width screens */
+}
+
+/* SSA Logo fixed to top right of screen */
+
+.logo {
+  position: fixed;
+  top: 16px;
+  left: 18px;
+  width: 80px;
+  height: 80px;
+}
+
+.logo:hover {
+  cursor: pointer;
+  transform: scale(1.1); 
+}
+
+/**
+ * flex box to hold both (pre & messagea) & (form-wrapper)
+ * This will be adjusted w/ media queries to size content width & left-alignment
+ */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 980px;
+  margin-left: 15%; /* For really large screens to be more left aligned */
+}
+
+/* Displays the Header title ASCII Art */
+pre { 
+  display: block;
+  font-family: monospace;
+  white-space: pre;
+  color: #FFF;
+  margin: 16px 0px 12px 0px;
+  font-size: 16px;
+}
+
+/**
+ * Messages ul displays chat messages and notifications
+ * SAME LEFT MARGIN as .form-wrapper
+ */
+
+ #messages {
+  overflow-y: scroll; 
+  list-style-type: none; 
+  padding: 12;
+  margin-bottom: 100px; /* keep bottom padding for incoming messages above input */
+}
+
+/**
+ * messages li appended inside <div> for each incoming chat message
+ * xtra <div> allows for a chat bubble effect
+ */
+#messages li { 
+  color: #FFFFFF;
+  display: inline-block;
+  word-break: break-word;
+  padding: 6px 12px 12px 11px;
+}
+
+#messages .chat-message {
+  background-color: #0F0F0F;
+  margin-bottom: 2px;
+  border-radius: 8px;
+}
+
+/* notifications don't have a bubble & are small w/ gray txt */
+#messages .notification {
+  font: 12px 'Barlow', Helvetica, Arial; 
+  color: #B8B5BA; 
+}
+
+/**
+ * form is the bottom bar that holds the input & send button
+ */
+form { 
+  border-top: 1px solid #353535;
+  background-color: #161616;
+  position: fixed; 
+  bottom: 0; 
+  min-height: 70px;
+  width: 100%;
+  padding: 12px 0px;
+  --safe-area-inset-bottom: env(safe-area-inset-bottom);
+  padding-bottom: calc(12px + var(--safe-area-inset-bottom));
+}
+
+/** 
+ * Flex box for .input-container & .send-button-container
+ * SAME LEFT MARGIN as #messages
+ */
+.form-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+/**
+ * .input-container holds 'invisible' textarea & .text-sizer
+ * textarea and .text-sizer need to be the same size w/ same content.
+ * Every time textarea input changes, the inner html content of .text-sizer will update.
+ * This will allow .text-sizer div to be sized by content of textarea.
+ * textarea is absolutely positioned (rel to .input-container) w/ 100% height to grow.
+ * .input-container has max height, then textarea will scroll
+ */
+
+.input-container {
+  position: relative;
+  width: 100%;
+  max-height: 100px;
+}
+
+textarea, .text-sizer {
+  border: 0;
+  border-radius: 4px; 
+  background: rgb(60, 60, 60); 
+  font: 14px 'Barlow', Helvetica, Arial; 
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100%;
+  padding: 14px 14px 15px 16px; 
+  max-height: 100px;
+  height: 100%;
+}
+
+textarea { 
+  position: absolute;
+  resize: none;
+  white-space: normal;
+  outline: none;
+  color: #FFFFFF; 
+  overflow-y: scroll;
+}
+
+.text-sizer {
+  visibility: hidden;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+textarea::placeholder {
+  font: 14px 'Barlow', Helvetica, Arial; 
+  color: #B8B5BA; 
+}
+
+/**
+ * .send-button-container which holds .sendbutton
+ * Flex to align .sendButton in center & dark circular background on hover
+ * Inside a div which is in a flex box w/ .input-container to have send btn after input
+ * xtra div is b/c it's absolutely positioned relative to this div to stay on bottom as input grows
+ */
+
+.send-button-container {
+  position: absolute;
+  bottom: 11px;
+  bottom: calc(11px + env(safe-area-inset-bottom));
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  display: flex;
+  margin-left: 8px;
+}
+
+/* This gives a hover effect of a dark circle around .sendbutton */
+.send-button-container:hover {
+  background-color: #0c0c0c;
+}
+
+.send-button { 
+  margin: auto;
+  height: 26px;
+  width: 26px;
+}
+
+/* Media Queries */
+
+/**
+ * Larger than 1600 screens:
+ * max-width: 980px
+ * margin-left: 15%
+ */
+
+ /* Begin to break content max width to fit & closer to the left */
+
+@media screen and (max-width: 1601px) {
+  .content-wrapper {
+    width: 60%;
+    margin-left: 10%;
+  }
+}
+
+ @media screen and (max-width: 1201px) {
+  .content-wrapper {
+    margin-left: 120px;
+  }
+}
+
+/**
+ * Now ASCII Art <pre> and logo needs to start shrinking to fit title
+ * Content moves closer to left, but width increases to fit in smaller screen/
+ * Input needs to shrink to keep send button away from right
+ */
+
+@media screen and (max-width: 979px) {
+  .logo {
+    top: 16px;
+    left: max(18px, env(safe-area-inset-left));
+    width: 64px;
+    height: 64px;
+  }
+  pre {
+    font-size: 12px;
+  }
+  .content-wrapper {
+    width: 70%;
+    margin-left: 120px;
+  }
+  .input-container {
+    width: 85%;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .logo {
+    top: 8px;
+    left: max(8px, env(safe-area-inset-left));
+    width: 56px;
+    height: 56px;
+  }
+  pre {
+    margin-top: 8px;
+    font-size: 9px;
+  }
+  .content-wrapper {
+    align-content: center;
+    width: 80%;
+    margin-left: 72px;
+  }
+}
+
+/**
+ * Small & Mobile:
+ * header is now visible.
+ * Center logo horizontally in front of header w/ right: 0, left: 0, margin: auto.
+ * messagesWrapper aka content-wrapper is padded down for header.
+ * Content now is almost full width.
+ */
+
+@media screen and (max-width: 540px) {
+  .header {
+    visibility: visible;
+  }
+  .logo {
+    top: 8px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 40px;
+    height: 40px;
+  }
+  pre {
+    font-size: 8px;
+  }
+  .content-wrapper {
+    width: 90%;
+    margin: auto;
+  }
+  #messagesWrapper {
+    padding-top: 56px;
+  }
+}
+
+@media screen and (max-width: 441px) {
+  pre {
+    font-size: 6px;
+  }
+}
