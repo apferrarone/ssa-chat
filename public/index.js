@@ -14,7 +14,7 @@ $(() => {
   const EVENT_NOTIFICATION = 'notification'
 
   const scrollToMessagesBottom = () => {
-    $(window).scrollTop($("#form").offset().top);
+    $('html, body').scrollTop($(document).height());
   };
   
   // sets the hidden text-sizer's content to be the same as the textarea to size textarea

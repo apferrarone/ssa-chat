@@ -279,13 +279,13 @@ textarea::placeholder {
 @media screen and (max-width: 1601px) {
   .content-wrapper {
     width: 60%;
-    margin-left: 10%;
+    margin-left: 15%;
   }
 }
 
  @media screen and (max-width: 1201px) {
   .content-wrapper {
-    margin-left: 120px;
+    margin-left: 160px;
   }
 }
 
