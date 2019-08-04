@@ -11,7 +11,7 @@
 <!doctype html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, height=device-height initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, height=device-height initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>👾 SSA Chat</title>
     <link href="https://fonts.googleapis.com/css?family=Barlow&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/reset.css" />
@@ -21,12 +21,10 @@
   <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
   <script src="/index.js"></script>
   <body>
-    <div class="background"></div>
-    <div class="content">
-      <div class="header"></div>
-      <img class="logo" src="/assets/ssa-logo-outline-pink-glowing.svg" id="logo"/>
-      <div class="content-wrapper", id="messagesWrapper">
-        <pre>
+    <div class="header"></div>
+    <img class="logo" src="/assets/ssa-logo-outline-pink-glowing.svg" id="logo"/>
+    <div class="content-wrapper", id="messagesWrapper">
+      <pre>
  ________   ________  ________          ________  ___  ___  ________  _________   
 |\   ____\ |\   ____\|\   __  \        |\   ____\|\  \|\  \|\   __  \|\___   ___\ 
 \ \  \___|_\ \  \___|\ \  \|\  \       \ \  \___|\ \  \\\  \ \  \|\  \|___ \  \_| 
@@ -35,24 +33,23 @@
     ____\_\  \ ____\_\  \ \__\ \__\       \ \_______\ \__\ \__\ \__\ \__\   \ \__\
    |\_________\\_________\|__|\|__|        \|_______|\|__|\|__|\|__|\|__|    \|__|
    \|_________\|_________|                                                                   
-        </pre>
-        <ul id="messages"></ul>
-      </div>
-      <form action="" id="form">
-        <div class="content-wrapper">
-          <div class="form-wrapper">
-            <div class="input-container" id="inputcontainer">
-              <textarea id=textarea placeholder="type a message" ></textarea>
-              <div class="text-sizer" autocomplete="off" id="textsizer" ></div>
-            </div>
-            <div class="send-button-container-wrapper">
-              <div class="send-button-container">
-                <img class="send-button" src="/assets/send-icon-glyph.svg" id="sendbutton"/>
-              </div>
+      </pre>
+      <ul id="messages"></ul>
+    </div>
+    <form action="" id="form">
+      <div class="content-wrapper">
+        <div class="form-wrapper">
+          <div class="input-container" id="inputcontainer">
+            <textarea id=textarea placeholder="type a message" ></textarea>
+            <div class="text-sizer" autocomplete="off" id="textsizer" ></div>
+          </div>
+          <div class="send-button-container-wrapper">
+            <div class="send-button-container">
+              <img class="send-button" src="/assets/send-icon-glyph.svg" id="sendbutton"/>
             </div>
           </div>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
   </body>
 </html>
