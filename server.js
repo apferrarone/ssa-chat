@@ -28,13 +28,13 @@ const EVENT_CHAT_MESSAGE = 'chat-message'
 const EVENT_NOTIFICATION = 'notification'
 
 // handle new chatServer connection
-chatServer.on("connection", (client) => {
+chatServer.on('connection', (client) => {
   // generate a random name for the client and add them to the pool
   client.name = generateName();
   clients[client.id] = client;
 
   // notify everyone about it
-  chatServer.sockets.emit(EVENT_NOTIFICATION, client.name + " has joined the server.")
+  chatServer.sockets.emit(EVENT_NOTIFICATION, client.name + ' has joined the server.')
   
 	client.on(EVENT_CHAT_MESSAGE, (msg) => {
     for (var id in clients) {
@@ -42,9 +42,9 @@ chatServer.on("connection", (client) => {
     }
 	});
 
-	client.on("disconnect", () => {
+	client.on('disconnect', () => {
     // notify everyone and remove client from pool
-		chatServer.sockets.emit(EVENT_NOTIFICATION, clients[client.id].name + " has left the server.");
+		chatServer.sockets.emit(EVENT_NOTIFICATION, clients[client.id].name + ' has left the server.');
 		delete clients[client.id];
 	});
 });
