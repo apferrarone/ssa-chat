@@ -9,17 +9,17 @@
    \|_________|       \|___|/                            \|_________|
 */
 
-
 /* Global Styles */
 
-* { 
-  margin: 0; 
-  padding: 0; 
-  box-sizing: border-box; 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html, body { 
-  font: 14px 'Barlow', Helvetica, Arial; 
+html,
+body {
+  font: 15px "Barlow", Helvetica, Arial;
   background: #000;
   -ms-overflow-style: none;
   scrollbar-width: none !important;
@@ -34,7 +34,7 @@ html, body {
     --safe-area-inset-top: env(safe-area-inset-top);
     --safe-area-inset-right: env(safe-area-inset-right);
     --safe-area-inset-bottom: env(safe-area-inset-bottom);
-    --safe-area-inset-left: env(safe-area-inset-left); 
+    --safe-area-inset-left: env(safe-area-inset-left);
   }
 }
 
@@ -43,11 +43,13 @@ html, body {
     --safe-area-inset-top: constant(safe-area-inset-top);
     --safe-area-inset-right: constant(safe-area-inset-right);
     --safe-area-inset-bottom: constant(safe-area-inset-bottom);
-    --safe-area-inset-left: constant(safe-area-inset-left); 
+    --safe-area-inset-left: constant(safe-area-inset-left);
   }
 }
 
-::-webkit-scrollbar, ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track { 
+::-webkit-scrollbar,
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-track {
   width: 0px !important;
   height: 0px !important;
   display: none !important;
@@ -84,7 +86,7 @@ html, body {
 
 .logo:hover {
   cursor: pointer;
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
 /**
@@ -99,11 +101,11 @@ html, body {
 }
 
 /* Displays the Header title ASCII Art */
-pre { 
+pre {
   display: block;
   font-family: monospace;
   white-space: pre;
-  color: #FFF;
+  color: #fff;
   margin: 16px 0px 12px 0px;
   font-size: 16px;
 }
@@ -113,9 +115,9 @@ pre {
  * SAME LEFT MARGIN as .form-wrapper
  */
 
- #messages {
-  overflow-y: scroll; 
-  list-style-type: none; 
+#messages {
+  overflow-y: scroll;
+  list-style-type: none;
   padding: 12;
   margin-bottom: 100px; /* keep bottom padding for incoming messages above input */
 }
@@ -124,33 +126,33 @@ pre {
  * messages li appended inside <div> for each incoming chat message
  * xtra <div> allows for a chat bubble effect
  */
-#messages li { 
-  color: #FFFFFF;
+#messages li {
+  color: #ffffff;
   display: inline-block;
   word-break: break-word;
   padding: 6px 12px 12px 11px;
 }
 
 #messages .chat-message {
-  background-color: #0F0F0F;
+  background-color: #0f0f0f;
   margin-bottom: 2px;
   border-radius: 8px;
 }
 
 /* notifications don't have a bubble & are small w/ gray txt */
 #messages .notification {
-  font: 12px 'Barlow', Helvetica, Arial; 
-  color: #B8B5BA; 
+  font: 12px "Barlow", Helvetica, Arial;
+  color: #b8b5ba;
 }
 
 /**
  * form is the bottom bar that holds the input & send button
  */
-form { 
+form {
   border-top: 1px solid #353535;
   background-color: #161616;
-  position: fixed; 
-  bottom: 0; 
+  position: fixed;
+  bottom: 0;
   min-height: 70px;
   width: 100%;
   padding: 12px 0px;
@@ -182,25 +184,26 @@ form {
   max-height: 100px;
 }
 
-textarea, .text-sizer {
+textarea,
+.text-sizer {
   border: 0;
-  border-radius: 4px; 
-  background: rgb(60, 60, 60); 
-  font: 14px 'Barlow', Helvetica, Arial; 
+  border-radius: 4px;
+  background: rgb(60, 60, 60);
+  font: 15px "Barlow", Helvetica, Arial;
   box-sizing: border-box;
   overflow: hidden;
   width: 100%;
-  padding: 14px 14px 15px 16px; 
+  padding: 14px 14px 15px 16px;
   max-height: 100px;
   height: 100%;
 }
 
-textarea { 
+textarea {
   position: absolute;
   resize: none;
   white-space: normal;
   outline: none;
-  color: #FFFFFF; 
+  color: #ffffff;
   overflow-y: scroll;
 }
 
@@ -212,8 +215,8 @@ textarea {
 }
 
 textarea::placeholder {
-  font: 14px 'Barlow', Helvetica, Arial; 
-  color: #B8B5BA; 
+  font: 15px "Barlow", Helvetica, Arial;
+  color: #b8b5ba;
 }
 
 /**
@@ -240,7 +243,7 @@ textarea::placeholder {
   cursor: pointer;
 }
 
-.send-button { 
+.send-button {
   margin: auto;
   height: 26px;
   width: 26px;
@@ -254,7 +257,7 @@ textarea::placeholder {
  * margin-left: 15%
  */
 
- /* Begin to break content max width to fit & closer to the left */
+/* Begin to break content max width to fit & closer to the left */
 
 @media screen and (max-width: 1601px) {
   .content-wrapper {
@@ -263,7 +266,7 @@ textarea::placeholder {
   }
 }
 
- @media screen and (max-width: 1201px) {
+@media screen and (max-width: 1201px) {
   .content-wrapper {
     margin-left: 160px;
   }
